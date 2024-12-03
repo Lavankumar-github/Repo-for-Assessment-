@@ -1,0 +1,149 @@
+time="2024-12-01T07:31:22Z" level=warning msg="/home/ec2-user/techdome/docker-compose.yml: the attribute `version` is obsolete, it will be ignored, please remove it to avoid potential confusion"
+ Service backend  Building
+#0 building with "default" instance using docker driver
+
+#1 [backend internal] load build definition from Dockerfile
+#1 transferring dockerfile: 433B done
+#1 DONE 0.0s
+
+#2 [backend internal] load metadata for docker.io/library/node:16
+#2 DONE 0.1s
+
+#3 [backend internal] load .dockerignore
+#3 transferring context: 2B done
+#3 DONE 0.0s
+
+#4 [backend 1/5] FROM docker.io/library/node:16@sha256:f77a1aef2da8d83e45ec990f45df50f1a286c5fe8bbfb8c6e4246c6389705c0b
+#4 DONE 0.0s
+
+#5 [backend internal] load build context
+ Service backend  Built
+ Service frontend  Building
+#5 transferring context: 924.91kB 0.4s done
+#5 DONE 0.4s
+
+#6 [backend 2/5] WORKDIR /app
+#6 CACHED
+
+#7 [backend 3/5] COPY package*.json ./
+#7 CACHED
+
+#8 [backend 4/5] RUN npm install
+#8 CACHED
+
+#9 [backend 5/5] COPY . .
+#9 CACHED
+
+#10 [backend] exporting to image
+#10 exporting layers done
+#10 writing image sha256:c9bf53979ab916e21dc29b8681030c379c3606672315b065cb18e1d90e976fe7 done
+#10 naming to docker.io/library/techdome-backend done
+#10 DONE 0.0s
+
+#11 [backend] resolving provenance for metadata file
+#11 DONE 0.0s
+
+#12 [frontend internal] load build definition from Dockerfile
+#12 transferring dockerfile: 796B done
+#12 DONE 0.0s
+
+#2 [frontend internal] load metadata for docker.io/library/node:16
+#2 DONE 0.2s
+
+#13 [frontend internal] load metadata for docker.io/library/nginx:stable-alpine
+#13 DONE 0.1s
+
+#14 [frontend internal] load .dockerignore
+#14 transferring context: 2B done
+#14 DONE 0.0s
+
+#4 [frontend build 1/6] FROM docker.io/library/node:16@sha256:f77a1aef2da8d83e45ec990f45df50f1a286c5fe8bbfb8c6e4246c6389705c0b
+#4 DONE 0.0s
+
+#15 [frontend stage-1 1/2] FROM docker.io/library/nginx:stable-alpine@sha256:d6f8c6b38edf2b7c6619718ad7a00caa4ed4741d12ce12550333a28d2b52dc89
+#15 DONE 0.0s
+
+#16 [frontend internal] load build context
+#16 transferring context: 9.66kB done
+#16 DONE 0.0s
+
+#17 [frontend build 5/6] COPY . .
+#17 CACHED
+
+#18 [frontend build 4/6] RUN npm install
+#18 CACHED
+
+#19 [frontend build 6/6] RUN npm run build
+#19 CACHED
+
+#20 [frontend build 3/6] COPY package*.json ./
+#20 CACHED
+
+#6 [frontend build 2/6] WORKDIR /app
+#6 CACHED
+
+#21 [frontend stage-1 2/2] COPY --from=build /app/build /usr/share/nginx/html
+#21 CACHED
+
+#22 [frontend] exporting to image
+#22 exporting layers done
+#22 writing image sha256:041b4c2ebee532cc8a6c87cdfbac2c5e3666424a7038e07328a5e80bc33fee3b done
+#22 naming to docker.io/library/techdome-frontend done
+#22 DONE 0.0s
+
+#23 [frontend] resolving provenance for metadata file
+ Service frontend  Built
+#23 DONE 0.0s
+ Container techdome-database-1  Created
+ Container techdome-backend-1  Created
+ Container techdome-frontend-1  Created
+Attaching to backend-1, database-1, frontend-1
+database-1  | 
+database-1  | PostgreSQL Database directory appears to contain a database; Skipping initialization
+database-1  | 
+database-1  | 2024-12-01 07:31:24.385 UTC [1] LOG:  starting PostgreSQL 15.10 (Debian 15.10-1.pgdg120+1) on x86_64-pc-linux-gnu, compiled by gcc (Debian 12.2.0-14) 12.2.0, 64-bit
+database-1  | 2024-12-01 07:31:24.385 UTC [1] LOG:  listening on IPv4 address "0.0.0.0", port 5432
+database-1  | 2024-12-01 07:31:24.385 UTC [1] LOG:  listening on IPv6 address "::", port 5432
+database-1  | 2024-12-01 07:31:24.392 UTC [1] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+database-1  | 2024-12-01 07:31:24.400 UTC [29] LOG:  database system was shut down at 2024-12-01 07:29:00 UTC
+database-1  | 2024-12-01 07:31:24.406 UTC [1] LOG:  database system is ready to accept connections
+frontend-1  | /docker-entrypoint.sh: /docker-entrypoint.d/ is not empty, will attempt to perform configuration
+frontend-1  | /docker-entrypoint.sh: Looking for shell scripts in /docker-entrypoint.d/
+frontend-1  | /docker-entrypoint.sh: Launching /docker-entrypoint.d/10-listen-on-ipv6-by-default.sh
+backend-1   | 
+backend-1   | > backend@1.0.0 start
+backend-1   | > node server.js
+backend-1   | 
+frontend-1  | 10-listen-on-ipv6-by-default.sh: info: IPv6 listen already enabled
+frontend-1  | /docker-entrypoint.sh: Sourcing /docker-entrypoint.d/15-local-resolvers.envsh
+frontend-1  | /docker-entrypoint.sh: Launching /docker-entrypoint.d/20-envsubst-on-templates.sh
+frontend-1  | /docker-entrypoint.sh: Launching /docker-entrypoint.d/30-tune-worker-processes.sh
+frontend-1  | /docker-entrypoint.sh: Configuration complete; ready for start up
+frontend-1  | 2024/12/01 07:31:25 [notice] 1#1: using the "epoll" event method
+frontend-1  | 2024/12/01 07:31:25 [notice] 1#1: nginx/1.26.2
+frontend-1  | 2024/12/01 07:31:25 [notice] 1#1: built by gcc 13.2.1 20240309 (Alpine 13.2.1_git20240309) 
+frontend-1  | 2024/12/01 07:31:25 [notice] 1#1: OS: Linux 6.1.115-126.197.amzn2023.x86_64
+frontend-1  | 2024/12/01 07:31:25 [notice] 1#1: getrlimit(RLIMIT_NOFILE): 32768:65536
+frontend-1  | 2024/12/01 07:31:25 [notice] 1#1: start worker processes
+frontend-1  | 2024/12/01 07:31:25 [notice] 1#1: start worker process 22
+frontend-1  | 2024/12/01 07:31:25 [notice] 1#1: start worker process 23
+frontend-1  | 2024/12/01 07:31:25 [notice] 1#1: start worker process 24
+frontend-1  | 2024/12/01 07:31:25 [notice] 1#1: start worker process 25
+frontend-1  | 2024/12/01 07:31:25 [notice] 1#1: start worker process 26
+frontend-1  | 2024/12/01 07:31:25 [notice] 1#1: start worker process 27
+frontend-1  | 2024/12/01 07:31:25 [notice] 1#1: start worker process 28
+frontend-1  | 2024/12/01 07:31:25 [notice] 1#1: start worker process 29
+backend-1   | listening at port undefined
+backend-1   | MongooseError: The `uri` parameter to `openUri()` must be a string, got "undefined". Make sure the first parameter to `mongoose.connect()` or `mongoose.createConnection()` is a string.
+backend-1   |     at _createMongoClient (/app/node_modules/mongoose/lib/connection.js:805:11)
+backend-1   |     at NativeConnection.openUri (/app/node_modules/mongoose/lib/connection.js:742:29)
+backend-1   |     at Mongoose.connect (/app/node_modules/mongoose/lib/index.js:406:15)
+backend-1   |     at Object.<anonymous> (/app/database/conn.js:3:10)
+backend-1   |     at Module._compile (node:internal/modules/cjs/loader:1198:14)
+backend-1   |     at Object.Module._extensions..js (node:internal/modules/cjs/loader:1252:10)
+backend-1   |     at Module.load (node:internal/modules/cjs/loader:1076:32)
+backend-1   |     at Function.Module._load (node:internal/modules/cjs/loader:911:12)
+backend-1   |     at Module.require (node:internal/modules/cjs/loader:1100:19)
+backend-1   |     at require (node:internal/modules/cjs/helpers:119:18)
+database-1  | 2024-12-01 07:36:24.495 UTC [27] LOG:  checkpoint starting: time
+database-1  | 2024-12-01 07:36:27.215 UTC [27] LOG:  checkpoint complete: wrote 30 buffers (0.2%); 0 WAL file(s) added, 0 removed, 0 recycled; write=2.708 s, sync=0.005 s, total=2.720 s; sync files=7, longest=0.003 s, average=0.001 s; distance=129 kB, estimate=129 kB
